@@ -1,0 +1,495 @@
+* {
+    box-sizing: border-box;
+}
+/* fonts */
+@font-face {
+    font-family: "GTLight";
+    src: url("../fonts/GTLight.woff") format("woff");
+}
+
+@font-face {
+    font-family: "GTBold";
+    src: url("../fonts/GTBold.woff") format("woff");
+}
+/* Basic setup */
+html {
+    font-family: "GTLight";
+    font-size: 16px;
+}
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+    font-family: "GTBold";
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+/* structural components */
+.wrapper {
+    width: 100%;
+    max-width: 1080px;
+    min-width: 300px;
+    padding: 0 1rem;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.pageContent>.wrapper {
+	padding:0;
+}
+.browseFolio>.wrapper {
+	padding:0;
+	border:1px solid #bebebe;
+	border-left:none;
+	border-right:none;
+}
+.topbar {
+        justify-content: space-between;
+        font-family: "GTBold";
+        flex-direction: row;
+        display: flex;
+    }
+.topbar h3 {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+.browseFolio {
+    line-height: 2rem;
+    min-height: 2rem;
+    background-color: rgba(0, 0, 0, 0.15);
+    display: none;
+}
+.workItem {
+    color:#222;
+    text-decoration:none;
+    flex-grow: 1;
+    border: 1px solid rgba(34, 34, 34, 0.15);
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+}
+.workItem:first-child {
+	border-top:none;
+}
+.workItem.active {
+    background-color: #df873a;
+    border:none;
+    border-top: 5px solid #E91E63;
+    margin-top: -5px;
+}
+.hero {
+    padding: 0 0 2rem 0;
+    min-height: 300px;
+}
+.hero h1 {
+    font-size: 34px;
+    line-height: 1.2em;
+    margin-bottom: 1rem;
+}
+.hero h2 {font-weight: 400;font-size: 18px;}
+.pageContent {
+    flex: 1;
+    background-color: rgba(102, 102, 102, 0.1);
+    width: 100%;
+}
+.webFooter {
+    color: white;
+    background-color: rgba(34, 34, 34, 0.5);
+}
+/* Homepage - tabbed interface */
+.tabbedArea {
+    position: relative;
+    height: 2.75rem;
+    margin-top: 0;
+}
+.tab {
+    width: 100%;
+}
+.tab label {
+    padding: 0 1em;
+    position: absolute;
+    left: 0;
+    width: calc(50% - 0.5rem);
+    top: 0;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #222;
+    line-height: 2.75rem;
+    height: 2.75rem;
+}
+.tab label:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+.tab label:before:hover {
+    background-color: #666;
+}
+.tab label.resumeTab {
+    left: calc(50% + 0.5rem);
+}
+.tab [type=radio] {
+    display: none;
+}
+.tabContent {
+    display: none;
+    width: 100%;
+}
+[type=radio]:checked~label {
+	background-color:#fff;
+}
+[type=radio]:checked~label:before {
+    content: "";
+    display: block;
+    border-top: 5px solid #333;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    height: 0;
+    width: 100%;
+    left: 0;
+}
+[type=radio]:checked~label~.tabContent {
+    display: block;
+}
+/* homepage - tiled navigation */
+
+.projectChooser {
+    padding-top: 1.5rem;
+}
+
+.tile {
+    display: flex;
+    background-color: rgba(34, 34, 34, 0.15);
+    padding: 0;
+    margin-bottom: 1.5rem;
+    flex-direction: column;
+}
+
+.tile h3,
+.tile .details h3,
+.tile .details h4 {
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.details {
+    flex: 0.5;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 0.75em 1em;
+}
+
+.details hr {
+    margin: 0.5em 0;
+}
+
+.tile header {
+    min-height: 8em;
+    flex: 1;
+}
+
+.tile header h3 {
+    font-size: 23px;
+    text-align: center;
+    line-height: 3em;
+}
+/* Project Pages */
+.project .pageContent {
+    background-color:#fff;
+}
+	.project .hero {
+	    min-height: 250px;
+		background-image: url("../media/template/timeTrackerOverview.png");
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: 50% 80px;
+		background-color: #df873a;
+		padding: 0;
+	}
+	.project .hero h1 {
+    text-transform: uppercase;
+    font-size: 28px;
+    line-height: 1.1em;
+    margin: 1.5rem 0;
+}
+.project .hero h1 span {
+    font-family:'GTLight';
+}
+/* Project page displays */
+.pageContent .topbar {
+    display: none;
+}
+.pageContent .browseFolio {background-color: transparent;line-height: normal;min-height: 0;padding-top: 45px;}
+.pageContent .browseFolio .wrapper {
+    padding:0;
+    justify-content: center;
+}
+.pageContent .browseFolio a {
+    display:inline-block;
+    vertical-align:top;
+    background-color:#222;
+    padding: 0 0.75rem;
+    border-radius: 8px;
+    margin-right: 0.5rem;
+    font-size: 16px;
+    line-height: 1.5rem;
+ }
+
+/* Resume Page */
+
+#resumePage {
+    text-align: left;
+    margin-top: -0.5rem;
+}
+
+#resumePage>header,
+.resumeLowlevel {
+    background-color: #fff;
+    padding: 1.5rem 0 1rem;
+    margin-top: calc(2.75rem + 5px);
+}
+
+.resumePage>header {
+    background-color: #eee;
+}
+
+#resumePage header h2:first-child {
+    /* border-bottom: 1px solid #eee; */
+    font-size: 0;
+}
+
+header {}
+
+#resumePage>header h2 {
+    font-size: 1.25rem;
+    padding: 0 1rem;
+    margin: 0;
+}
+
+#resumePage>header>h3 {
+    margin: 0 0 1.5rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+}
+
+#resumePage>header>h3+h3 {
+    border-bottom: 1px solid #ddd;
+    margin: 0 0 1rem;
+    padding: 0;
+    font-size: 0;
+}
+#resumePage>header ul {
+	margin:0 0 0 0;
+	padding:0 0 0 2rem;
+}
+#resumePage>header li {
+    padding: 0 1rem 0 0;
+    margin-bottom:0.75rem;
+}
+
+.resumeLowlevel {
+    padding: 0 0 2rem;
+    background: transparent;
+}
+
+.resumeLowlevel h3 {
+    line-height: 2rem;
+    margin: 0;
+    padding: 0 2rem;
+    background: rgba(51, 51, 51, 0.25);
+    font-size: 18px;
+}
+
+.resumeLowlevel section {
+    padding: 1rem 1rem 1.5rem;
+    border-top: 1px solid #ccc;
+    margin: 0 0 1rem;
+    background: #fff;
+}
+
+.resumeLowlevel h4 {
+    margin: 0 0 1rem;
+}
+
+.resumeLowlevel p {
+    margin: 0 0 0.5rem;
+    line-height: 1.5em;
+}
+
+.resumeLowlevel p strong {
+    display: inline-block;
+    width: 100%;
+    font-family: 'GTBold';
+    margin-top: 1rem;
+}
+
+.resumeLowlevel aside p {
+    margin: 0 0 0.5rem;
+    font-size: 16px;
+}
+
+.resumeLowlevel aside p strong {
+    border-top: none;
+    padding-top: 0;
+    font-family: 'GTLight';
+    font-size: 1rem;
+    margin-top: 0;
+}
+
+.resumeLowlevel p span {
+    font-family: 'GTBold';
+    display: block;
+}
+
+.resumeLowlevel aside {
+    padding: 1rem 1.5rem 0.75rem;
+    border-left: 5px solid #E91E63;
+    background-color: rgba(34, 34, 34, 0.1);
+    margin-bottom: 1rem;
+}
+
+.resumeLowlevel aside+h4 {
+    font-size: 0;
+    margin: 0;
+}
+
+
+/* Desktop Styles */
+
+@media only screen and (min-width: 800px) {
+    html {
+    overflow-y: scroll;
+    font-size: 23px;
+}
+
+    body {
+        /* background-color: inherit; */
+    }
+    .branding {
+        display: block;
+    }
+    .branding .topbar {
+       font-size: 18px;
+    }
+    .browseFolio {
+    line-height: 2rem;
+    min-height: 2rem;
+    font-size:18px;
+    border-top: 5px solid #fff;
+    background-color: #222;
+
+}
+.browseFolio>.wrapper {
+    flex-direction: row;
+    justify-content:space-between;
+    width: 100%;
+    max-width: 1080px;
+    min-width: 300px;
+    padding: 0 1rem;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.workItem {
+    color:#fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top:none;
+    border-bottom:none;
+    margin:0;
+}
+    .hero {
+        padding-bottom: 5.5rem;
+        min-height: 485px;
+    }
+    .project .hero {
+    min-height: 50vh;
+}
+    .hero h1 {
+        font-size: 69px;
+    }
+    .hero h2 {
+        font-size: 23px;
+    }
+    .pageContent {
+	font-size: 23px;
+}
+    /* tabbed nav */
+    .tabbedArea {
+        top: -4rem;
+    }
+    .tab label {
+        background: transparent;
+    }
+    [type=radio]:checked~label:before {
+        content: none;
+    }
+
+    .tab label {
+    padding: 0 1em;
+    position: absolute;
+    left: 0;
+    width: calc(50% - 0.5rem);
+    top: 0;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 4px solid #222;
+    color: #222;
+    line-height: 2rem;
+}
+.tab label:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+.tab label:before:hover {
+    background-color: #666;
+}
+.tab label.resumeTab {
+    left: calc(50% + 0.5rem);
+}
+.tab [type=radio] {
+    display: none;
+}
+.tabContent {
+    display: none;
+    width: 100%;
+}
+[type=radio]:checked~label {
+    background: #222222;
+    color: #fff;
+}
+[type=radio]:checked~label:before {
+    content: "";
+    display: block;
+    border-bottom: 5px solid #333;
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    height: 5px;
+    width: 100%;
+    left: 0;
+}
+    /* tiles */
+    .tile {
+        flex-direction: row;
+    }
+    .tile header {
+        min-height: 12em;
+    }
+    .project .hero {
+		
+	}
+	.project .hero h1 {
+    font-size: 43px;
+    line-height: 1.1em;
+}
+#resumePage>header li {
+    font-size: 18px;
+    margin: 0 2rem 0.5em 1.25em;
+}
+}
